@@ -1,14 +1,13 @@
 package com.oop.lab1;
 
-/*import com.oop.lab1.advanced.Student;*/
 import com.oop.lab1.advanced.University;
-/*import com.oop.lab1.basic.Monitor;*/
+import com.oop.lab1.basic.Monitor;
 
 public class Main {
 
     public static void main(String[] args) {
         //basic task
-        /*Monitor M1 = new Monitor("charcoal black", 1080, 22);
+        Monitor M1 = new Monitor("charcoal black", 1080, 22);
         Monitor M2 = new Monitor("crimson red", 1440, 24);
 
         System.out.println("Monitor #1    \t Monitor #2");
@@ -27,7 +26,7 @@ public class Main {
             System.out.println(M1.getDiagonal() + " < " + M2.getDiagonal());
         } else {
             System.out.println(M1.getDiagonal() + " = " + M2.getDiagonal());
-        }*/
+        }
         //advanced task
         /*Student student1 = new Student("Wilson", 20, 9.5);
         Student student2 = new Student("Wendy", 21, 8.0);
