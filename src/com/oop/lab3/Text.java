@@ -13,18 +13,10 @@ public class Text {
         this.text = text;
     }
 
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
-
     public void sentenceCount(String text) {
-        for(int i = 0; i < text.length(); i++) {
+        for (int i = 0; i < text.length(); i++) {
             char ch = text.charAt(i);
-            if(ch == '.' || ch == '?' || ch == '!')
+            if (ch == '.' || ch == '?' || ch == '!')
                 sCount++;
         }
         System.out.println("Sentence count: " + sCount);
@@ -38,8 +30,8 @@ public class Text {
 
     public void letterCount(String text) {
         char[] ch = text.toCharArray();
-        for(int i = 0; i < text.length(); i++) {
-            if(Character.isLetterOrDigit(ch[i]))
+        for (int i = 0; i < text.length(); i++) {
+            if (Character.isLetterOrDigit(ch[i]))
                 lCount++;
         }
         System.out.println("Letter count: " + lCount);
@@ -47,11 +39,11 @@ public class Text {
 
     public void speechSoundCount(String text) {
         text = text.toLowerCase();
-        for(int i = 0; i < text.length(); i++) {
+        for (int i = 0; i < text.length(); i++) {
             char ch = text.charAt(i);
-            if(ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u') {
+            if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u') {
                 vCount++;
-            } else if(ch >= 'a' && ch <= 'z') {
+            } else if (ch >= 'a' && ch <= 'z') {
                 cCount++;
             }
         }
@@ -60,42 +52,61 @@ public class Text {
     }
 
     public void longestWord(String text) {
+        // get rif of all the punctuations
+        text = text.replaceAll("\\p{Punct}", "");
         text = text.toLowerCase();
         String[] words = text.split(" ");
         String maxLengthWord = "";
-        for(int i = 0; i < words.length; i++) {
-            if(words[i].length() >= maxLengthWord.length())
+        for (int i = 0; i < words.length; i++) {
+            if (words[i].length() >= maxLengthWord.length())
                 maxLengthWord = words[i];
         }
         System.out.println("Longest word: " + maxLengthWord);
     }
 
     public List<String> topKFrequent(String text, int k) {
-        text = text.replaceAll("\\p{Punct}","");
+        // get rif of all the punctuations
+        text = text.replaceAll("\\p{Punct}", "");
+        // switch to lowercase in order not to omit the words starting with a capital letter
         text = text.toLowerCase();
-        String[] words = text.split(" ");
-        List<String> top5 = new ArrayList<>();
-        if (words == null || words.length == 0) {
-            return top5;
-        }
+        String[] words = text.split("\\s+");
 
+        // initialize map in order to get the frequencies
         Map<String, Integer> map = new HashMap<String, Integer>();
         for (String s : words) {
+            // if word is not there we default to 0 and add 1
             map.put(s, map.getOrDefault(s, 0) + 1);
         }
 
-        PriorityQueue<Map.Entry<String, Integer>> maxHeap = new PriorityQueue<>(k,
-                (a, b) -> a.getValue() != b.getValue() ? b.getValue() - a.getValue()
-                        : a.getKey().compareTo(b.getKey()));
-        for (Map.Entry<String, Integer> set : map.entrySet()) {
-            maxHeap.add(set);
+        // Initialize priority queue and comparator
+        PriorityQueue<String> pq = new PriorityQueue<>(new Comparator<String>() {
+            @Override
+            public int compare(String word1, String word2) {
+                int frequency1 = map.get(word1);
+                int frequency2 = map.get(word2);
+                // if frequencies are the same we go by greater alphabetical order
+                if (frequency1 == frequency2)
+                    return word2.compareTo(word1);
+                // else sort strings by lesser frequencies
+                return frequency1 - frequency2;
+            }
+        });
+
+        // loop over our entries
+        for (Map.Entry<String, Integer> entry : map.entrySet()) {
+            // add entry to pq
+            pq.add(entry.getKey());
+            if (pq.size() > k)
+                pq.poll();
         }
 
-        while (k > 0) {
-            top5.add(maxHeap.poll().getKey());
-            k--;
-        }
-        System.out.println("Top 5 words: " + top5);
-        return top5;
+        List<String> topK = new ArrayList<>();
+        while (!pq.isEmpty())
+            topK.add(pq.poll());
+
+        // reverse back to order
+        Collections.reverse(topK);
+        System.out.println("Top 5 words: " + topK);
+        return topK;
     }
 }
