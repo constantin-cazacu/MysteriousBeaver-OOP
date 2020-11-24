@@ -15,14 +15,14 @@ public class Triangle extends Figure {
     public double getArea()
     {
         double trArea = Math.sqrt(getPerimeter()/2 * (getPerimeter()/2 - firstSide) * (getPerimeter()/2 - secondSide) * (getPerimeter()/2 - thirdSide));
-        System.out.println("Area of the Triangle: " + trArea);
-        return Math.sqrt(getPerimeter()/2 * (getPerimeter()/2 - firstSide) * (getPerimeter()/2 - secondSide) * (getPerimeter()/2 - thirdSide));
+        //System.out.println("Area of the Triangle: " + trArea);
+        return trArea;
     }
 
     public double getPerimeter()
     {
-        double trPerimeter = firstSide + secondSide + thirdSide;
-        System.out.println("Perimeter of the Triangle: " + trPerimeter);
+        //double trPerimeter = firstSide + secondSide + thirdSide;
+        //System.out.println("Perimeter of the Triangle: " + trPerimeter);
         return firstSide + secondSide + thirdSide;
     }
 
