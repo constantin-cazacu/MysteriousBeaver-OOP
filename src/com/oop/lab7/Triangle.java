@@ -14,18 +14,20 @@ public class Triangle extends Figure {
 
     public double getArea()
     {
-        System.out.println("Area of the Triangle");
+        double trArea = Math.sqrt(getPerimeter()/2 * (getPerimeter()/2 - firstSide) * (getPerimeter()/2 - secondSide) * (getPerimeter()/2 - thirdSide));
+        System.out.println("Area of the Triangle: " + trArea);
         return Math.sqrt(getPerimeter()/2 * (getPerimeter()/2 - firstSide) * (getPerimeter()/2 - secondSide) * (getPerimeter()/2 - thirdSide));
     }
 
     public double getPerimeter()
     {
-        System.out.println("Perimeter of the Triangle");
+        double trPerimeter = firstSide + secondSide + thirdSide;
+        System.out.println("Perimeter of the Triangle: " + trPerimeter);
         return firstSide + secondSide + thirdSide;
     }
 
     public String getName()
     {
-        return "Triangle";
+        return "Triangle is the biggest";
     }
 }

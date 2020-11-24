@@ -1,33 +1,27 @@
 package com.oop.lab7;
 
 public class FigureController {
-    public Figure biggestAreaFigure(Figure objects[]) {
-        int n;
-        int i;
-        int biggestIndex = 0;
-        double biggestArea = 0;
-        n = objects.length;
-        for (i = 0; i < n; i++) {
-            if (objects[i].getArea() > biggestArea) {
-                biggestArea = objects[i].getArea();
-                biggestIndex = i;
+    public Figure maxAreaFigure(Figure[] objects) {
+        Figure max = null;
+        for (Figure figure : objects) {
+            if (max == null) {
+                max = figure;
+            } else if (figure.getArea() > max.getArea()) {
+                max = figure;
             }
         }
-        return objects[biggestIndex];
+        return max;
     }
 
-    public Figure biggestPerimeterFigure(Figure objects[]) {
-        int n;
-        int i;
-        int biggestIndex = 0;
-        double biggestPerimeter = 0;
-        n = objects.length;
-        for (i = 0; i < n; i++) {
-            if (objects[i].getPerimeter() > biggestPerimeter) {
-                biggestPerimeter = objects[i].getPerimeter();
-                biggestIndex = i;
+    public Figure maxPerimeterFigure(Figure[] objects) {
+        Figure max = null;
+        for (Figure figure : objects) {
+            if (max == null) {
+                max = figure;
+            } else if (figure.getPerimeter() > max.getPerimeter()) {
+                max = figure;
             }
         }
-        return objects[biggestIndex];
+        return max;
     }
 }

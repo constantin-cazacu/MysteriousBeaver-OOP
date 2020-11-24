@@ -11,16 +11,16 @@ public class Rectangle extends Figure {
     }
 
     public double getArea() {
-        System.out.println("Area of the Rectangle");
+        System.out.println("Area of the Rectangle: " + width * length);
         return width * length;
     }
 
     public double getPerimeter() {
-        System.out.println("Perimeter of the Rectangle");
+        System.out.println("Perimeter of the Rectangle: " + 2 * (width * length));
         return 2 * (width * length);
     }
 
     public String getName() {
-        return "Rectangle";
+        return "Rectangle is the biggest";
     }
 }

@@ -10,18 +10,18 @@ public class Square extends Figure {
 
     public double getArea()
     {
-        System.out.println("Area of the Square");
+        System.out.println("Area of the Square: " + sideLength * sideLength);
         return sideLength * sideLength;
     }
 
     public double getPerimeter()
     {
-        System.out.println("Perimeter of the Square");
+        System.out.println("Perimeter of the Square: " + 4 * sideLength);
         return 4 * sideLength;
     }
 
     public String getName()
     {
-        return "Square";
+        return "Square is the biggest";
     }
 }
