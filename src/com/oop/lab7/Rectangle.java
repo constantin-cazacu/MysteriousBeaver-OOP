@@ -17,7 +17,7 @@ public class Rectangle extends Figure {
 
     public double getPerimeter() {
         //System.out.println("Perimeter of the Rectangle: " + 2 * (width * length));
-        return 2 * (width * length);
+        return 2 * (width + length);
     }
 
     public String getName() {
