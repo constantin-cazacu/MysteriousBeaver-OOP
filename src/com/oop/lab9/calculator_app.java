@@ -54,7 +54,13 @@ public class calculator_app{
 
     private void getOperator(String BtnText){
         operator = BtnText.charAt(0);
-        total1 = total1 + Double.parseDouble(textField1.getText());
+        try {
+            total1 = total1 + Double.parseDouble(textField1.getText());
+        } catch (Exception err) {
+            errorMsg.setText("Invalid input!");
+            textField1.setText("");
+            total1 = 0;
+        }
         textField1.setText("");
     }
 
@@ -197,12 +203,20 @@ public class calculator_app{
             public void actionPerformed(ActionEvent e) {
                 switch (operator){
                     case '+':
-                        total2 = total1 + Double.parseDouble(textField1.getText());
-                        label1.setText("");
+                        try {
+                            total2 = total1 + Double.parseDouble(textField1.getText());
+                        } catch (Exception err) {
+                            errorMsg.setText("Invalid input!");
+                            label1.setText("");
+                        }
                         break;
                     case '-':
-                        total2 = total1 - Double.parseDouble(textField1.getText());
-                        label1.setText("");
+                        try {
+                            total2 = total1 - Double.parseDouble(textField1.getText());
+                        } catch (Exception err) {
+                            errorMsg.setText("Invalid input!");
+                            label1.setText("");
+                        }
                         break;
                     case '/':
                         try {
@@ -214,12 +228,20 @@ public class calculator_app{
                             errorMsg.setText("Division by 0? That is illegal!");
                             break;
                         }
-                        total2 = total1 / Double.parseDouble(textField1.getText());
-                        label1.setText("");
+                        try {
+                            total2 = total1 / Double.parseDouble(textField1.getText());
+                        } catch (Exception err) {
+                            errorMsg.setText("Invalid input!");
+                            label1.setText("");
+                        }
                         break;
                     case '*':
-                        total2 = total1 * Double.parseDouble(textField1.getText());
-                        label1.setText("");
+                        try {
+                            total2 = total1 * Double.parseDouble(textField1.getText());
+                        } catch (Exception err) {
+                            errorMsg.setText("Invalid input!");
+                            label1.setText("");
+                        }
                         break;
                     default:
                         throw new IllegalStateException("Unexpected value: " + operator);
